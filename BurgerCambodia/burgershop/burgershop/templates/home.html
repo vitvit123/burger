@@ -1,0 +1,1454 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreshDaily Restaurant</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+
+
+</head>
+
+<body>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
+
+:root {
+    --green: #27ae60;
+    --black: #192a56;
+    --light-color: #666;
+    --box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .1);
+
+    --bs-blue: #0d6efd;
+    --bs-indigo: #6610f2;
+    --bs-purple: #6f42c1;
+    --bs-pink: #d63384;
+    --bs-red: #dc3545;
+    --bs-orange: #fd7e14;
+    --bs-yellow: #ffc107;
+    --bs-green: #198754;
+    --bs-teal: #20c997;
+    --bs-cyan: #0dcaf0;
+    --bs-white: #fff;
+    --bs-gray: #6c757d;
+    --bs-gray-dark: #343a40;
+}
+
+* {
+    font-family: 'Nunito', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    text-transform: capitalize;
+    transition: all .2s linear;
+}
+
+html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-padding-top: 5.5rem;
+    scroll-behavior: smooth;
+}
+
+section {
+    padding: 2rem 5%;
+}
+
+section:nth-child(even) {
+    background: #eee;
+}
+
+.sub-heading {
+    text-align: center;
+    color: var(--bs-indigo);
+    font-size: 2rem;
+    padding-top: 1rem;
+}
+
+.heading {
+    text-align: center;
+    color: var(--black);
+    font-size: 3rem;
+    padding-bottom: 2rem;
+    text-transform: uppercase;
+}
+
+.btn {
+    margin-top: 1rem;
+    display: inline-block;
+    font-size: 1.7rem;
+    color: #fff;
+    background: var(--black);
+    border-radius: .5rem;
+    cursor: pointer;
+    padding: .8rem 3rem;
+}
+
+.btn:hover {
+    background: var(--bs-indigo);
+    letter-spacing: .1rem;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    padding: 1rem 7%;
+    display: flex;
+    justify-content: space-between;
+    z-index: 1000;
+    box-shadow: var(--box-shadow);
+    height: 8rem;
+    line-height: 5rem;
+}
+
+header .logo {
+    width: 7rem;
+
+}
+
+header .logo img {
+    width: 100%;
+    height: 70px;
+
+}
+
+header .navbar {
+    justify-content: space-around;
+}
+
+header .navbar a {
+    font-size: 1.7rem;
+    border-radius: .5rem;
+    padding: .5rem 1.5rem;
+    color: var(--light-color);
+}
+
+header .navbar a.active,
+header .navbar a:hover {
+    color: #fff;
+    background: var(--bs-blue);
+}
+
+header .icons i,
+header .icons a {
+    cursor: pointer;
+    margin-left: .5rem;
+    height: 4.5rem;
+    line-height: 4.5rem;
+    width: 4.5rem;
+    text-align: center;
+    font-size: 1.7rem;
+    color: var(--black);
+    border-radius: 50%;
+    background: #eee;
+}
+
+header .icons i:hover{
+    color: #fff;
+    background: var(--bs-blue);
+}
+
+header .icons #menu-bars {
+    display: none;
+}
+
+#search-form {
+    position: fixed;
+    top: -110%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1004;
+    background: rgba(0, 0, 0, .8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+}
+
+#search-form.active {
+    top: 0;
+}
+
+#search-form #search-box {
+    width: 50rem;
+    border-bottom: .1rem solid #fff;
+    padding: 1rem 0;
+    color: #fff;
+    font-size: 3rem;
+    text-transform: none;
+    background: none;
+}
+
+#search-form #search-box::placeholder {
+    color: #eee;
+}
+
+#search-form #search-box::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+}
+
+#search-form label {
+    color: #fff;
+    cursor: pointer;
+    font-size: 3rem;
+}
+
+#search-form label:hover {
+    color: var(--green);
+}
+
+#search-form #close {
+    position: absolute;
+    color: #fff;
+    cursor: pointer;
+    top: 2rem;
+    right: 3rem;
+    font-size: 5rem;
+}
+
+.home .home-slider .slide {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding-top: 7rem;
+}
+
+.home .home-slider .slide .content {
+    flex: 1 1 45rem;
+}
+
+.home .home-slider .slide .image {
+    flex: 1 1 45rem;
+}
+
+.home .home-slider .slide .image img {
+    width: 100%;
+    /* height: 53rem; */
+    animation:float 3s linear infinite;
+}
+
+@keyframes float{
+  0%, 100%{
+    transform: translateY(0rem);
+  }
+  50%{
+    transform: translateY(3rem);
+  }
+}
+.home .home-slider .slide .content span {
+    color: var(--green);
+    font-size: 2.5rem;
+}
+
+.home .home-slider .slide .content h3 {
+    color: var(--black);
+    font-size: 7rem;
+}
+
+.home .home-slider .slide .content p {
+    color: var(--light-color);
+    font-size: 2.2rem;
+    padding: .5rem 0;
+    line-height: 1.5;
+}
+
+.swiper-pagination-bullet-active {
+    background: var(--bs-blue);
+}
+
+
+.feature .item {
+    /* display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+    gap: 3rem; */
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin: 4rem 0;
+    justify-content: space-between;
+    transition: all 0.7;
+
+}
+
+
+.feature .item .main-item1 {
+    flex: 1 1 22rem;
+    position: relative;
+    padding: 2.5rem;
+    color: var(--bs-indigo);
+    border: 2px solid var(--bs-indigo);
+    border-radius: 5px;
+    text-align: center;
+    height: 20rem;
+    cursor: pointer;
+
+
+}
+
+.feature .item .main-item1 i {
+    font-size: 3rem;
+    width: 6rem;
+    height: 6rem;
+    line-height: 6rem;
+    border: 2px dotted var(--bs-indigo);
+    border-radius: 50px;
+    margin: 2rem 0;
+
+}
+
+.feature .item .main-item1 h4 {
+    font-size: 1.5rem;
+}
+
+.feature .item .main-item1:hover {
+    background-color: var(--bs-indigo);
+    color: #fff;
+}
+
+.feature .item .main-item1:hover i {
+    border: 2px dotted #fff;
+    transform: rotate(360deg);
+    color: #fff;
+}
+
+
+.feature .item .main-item2 {
+    flex: 1 1 22rem;
+    position: relative;
+    padding: 2.5rem;
+    color: var(--bs-red);
+    border: 2px solid var(--bs-red);
+    border-radius: 5px;
+    text-align: center;
+    height: 20rem;
+    cursor: pointer;
+
+}
+
+.feature .item .main-item2 i {
+    font-size: 3rem;
+    width: 6rem;
+    height: 6rem;
+    line-height: 6rem;
+    border: 2px dotted var(--bs-red);
+    border-radius: 50px;
+    margin: 2rem 0;
+
+}
+
+.feature .item .main-item2 h4 {
+    font-size: 1.5rem;
+}
+
+.feature .item .main-item2:hover {
+    background-color: var(--bs-red);
+    color: #fff;
+
+}
+
+.feature .item .main-item2:hover i {
+    border: 2px dotted #fff;
+    transform: rotate(360deg);
+    color: #fff;
+}
+
+.feature .item .main-item3 {
+    flex: 1 1 22rem;
+    position: relative;
+    padding: 2.5rem;
+    color: var(--bs-teal);
+    border: 2px solid var(--bs-teal);
+    border-radius: 5px;
+    text-align: center;
+    height: 20rem;
+    cursor: pointer;
+
+}
+
+.feature .item .main-item3 i {
+    font-size: 3rem;
+    width: 6rem;
+    height: 6rem;
+    line-height: 6rem;
+    border: 2px dotted var(--bs-teal);
+    border-radius: 50px;
+    margin: 2rem 0;
+
+}
+
+.feature .item .main-item3 h4 {
+    font-size: 1.5rem;
+}
+
+.feature .item .main-item3:hover {
+    background-color: var(--bs-teal);
+    color: #fff;
+}
+
+.feature .item .main-item3:hover i {
+    border: 2px dotted #fff;
+    transform: rotate(360deg);
+    color: #fff;
+}
+
+.feature .item .main-item4 {
+    flex: 1 1 22rem;
+    position: relative;
+    padding: 2.5rem;
+    color: var(--bs-orange);
+    border: 2px solid var(--bs-orange);
+    border-radius: 5px;
+    text-align: center;
+    height: 20rem;
+    cursor: pointer;
+    transition: 1s box-shadow;
+
+}
+
+.feature .item .main-item4 i {
+    font-size: 3rem;
+    width: 6rem;
+    height: 6rem;
+    line-height: 6rem;
+    border: 2px dotted var(--bs-orange);
+    border-radius: 50px;
+    margin: 2rem 0;
+
+}
+
+.feature .item .main-item4 h4 {
+    font-size: 1.5rem;
+}
+
+.feature .item .main-item4:hover {
+    background-color: var(--bs-orange);
+    color: #fff;
+}
+
+.feature .item .main-item4:hover i {
+    border: 2px dotted #fff;
+    transform: rotate(360deg);
+    color: #fff;
+}
+
+.story .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.story .row .image {
+    flex: 1 1 45rem;
+}
+
+.story .row .image img {
+    width: 100%;
+    height: 30rem;
+}
+
+.story .row .content {
+    flex: 1 1 45rem;
+    animation: slide-in 1000ms;
+}
+
+.story .row .content p {
+    color: var(--bs-gray-dark);
+    font-size: 1.5rem;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow';
+    padding: .5rem 0;
+    text-align: left;
+    line-height: 1.5;
+}
+@keyframes slide-in{
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0%);
+    }
+}
+
+
+
+.dishes{
+    margin-top: 8rem;
+}
+.dishes .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+    gap: 1.5rem;
+}
+
+.dishes .box-container .box {
+    padding: 2.5rem;
+    background: #fff;
+    border-radius: .5rem;
+    border: .1rem solid rgba(0, 0, 0, .2);
+    box-shadow: var(--box-shadow);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    cursor: pointer;
+}
+
+.dishes .box-container .box img {
+    height: 17rem;
+    margin: 1rem 0;
+}
+
+.dishes .box-container .box h3 {
+    color: var(--black);
+    font-size: 2.5rem;
+    text-align: left;
+}
+
+.dishes .box-container .box .stars {
+    padding: 1rem 0;
+    text-align: left;
+}
+
+.dishes .box-container .box .stars i {
+    font-size: 1.7rem;
+    color: var(--green);
+}
+
+.dishes .box-container .box span {
+    color: var(--bs-red);
+    font-weight: bolder;
+    font-size: 2.0rem;
+    float: left;
+    text-decoration: line-through;
+}
+
+.dishes .box-container .box h2 {
+    color: var(--green);
+    font-weight: bolder;
+    font-size: 2.0rem;
+    margin-right: 2rem;
+
+}
+
+.dishes .box-container .box .btn2 {
+    width: 60px;
+    height: 30px;
+    background-color: var(--bs-red);
+    color: #fff;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    /* border: 1px dotted var(--bs-indigo); */
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
+    box-shadow: var(--box-shadow);
+    border-radius: 10%;
+
+}
+
+.dishes .box-container .box img:hover {
+    transform: scale(1.1);
+
+}
+
+.dishes .box-container .box:hover span {
+    transform: rotate(5deg);
+}
+
+
+
+.about{
+    margin-top: 8rem;
+}
+.about .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    animation: slide-in 1000ms;
+}
+
+.about .row .image {
+    flex: 1 1 45rem;
+}
+
+.about .row .image img {
+    width: 100%;
+}
+
+.about .row .content {
+    flex: 1 1 45rem;
+}
+
+.about .row .content h3 {
+    color: var(--black);
+    font-size: 4rem;
+    padding: .5rem 0;
+}
+
+.about .row .content p {
+    color: var(--light-color);
+    font-size: 1.5rem;
+    padding: .5rem 0;
+    line-height: 2;
+}
+@keyframes slide-in{
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0%);
+    }
+}
+
+
+
+.menu{
+    margin-top: 8rem;
+}
+.menu .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+    gap: .5rem;
+}
+
+.menu .box-container .box {
+    background: #fff;
+    border: .1rem solid rgba(0, 0, 0, .2);
+    border-radius: .5rem;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+}
+
+.menu .box-container .box .image {
+    height: 25rem;
+    width: 100%;
+    padding: 1.5rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.menu .box-container .box .image img {
+    height: 100%;
+    width: 100%;
+    border-radius: .5rem;
+    object-fit: cover;
+}
+
+
+.menu .box-container .box .image .fa-heart:hover {
+    background-color: var(--green);
+    color: #fff;
+}
+
+.menu .box-container .box .content {
+    padding: 2rem;
+    padding-top: 0;
+}
+
+.menu .box-container .box .content .stars {
+    padding-bottom: 1rem;
+}
+
+.menu .box-container .box .content .stars i {
+    font-size: 1.7rem;
+    color: var(--green);
+}
+
+.menu .box-container .box .content h3 {
+    color: var(--black);
+    font-size: 2.5rem;
+}
+
+.menu .box-container .box .content p {
+    color: var(--light-color);
+    font-size: 1.6rem;
+    padding: .5rem 0;
+    line-height: 1.5;
+}
+
+.menu .box-container .box .content .price {
+    color: var(--green);
+    margin-left: 1rem;
+    font-size: 2.5rem;
+}
+
+.menu .box-container .box img:hover {
+    transform: scale(1.1);
+
+}
+
+
+
+.order{
+    margin-top: 8rem;
+}
+.order form {
+    max-width: 90rem;
+    border-radius: .5rem;
+    box-shadow: var(--box-shadow);
+    border: .1rem solid rgba(0, 0, 0, .2);
+    background: #fff;
+    padding: 1.5rem;
+    margin: 0 auto;
+}
+
+.order form .inputBox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.order form .inputBox .input {
+    width: 49%;
+}
+
+.order form .inputBox .input span {
+    display: block;
+    padding: .5rem 0;
+    font-size: 1.5rem;
+    color: var(--light-color);
+}
+
+.order form .inputBox .input input,
+.order form .inputBox .input textarea {
+    background: #eee;
+    border-radius: .5rem;
+    padding: 1rem;
+    font-size: 1.6rem;
+    color: var(--black);
+    text-transform: none;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.order form .inputBox .input input:focus,
+.order form .inputBox .input textarea:focus {
+    border: .1rem solid var(--green);
+}
+
+.order form .inputBox .input textarea {
+    height: 20rem;
+    resize: none;
+}
+
+.order form .btn {
+    margin-top: 0;
+}
+ 
+
+
+.News{
+    margin-top: 9rem;
+}
+.slide-bar .slide-item{
+    padding: 2rem 30%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.slide-bar .slide-item .slide{
+    flex: 1 1 20rem;
+    
+}
+.slide-bar .slide-item .slide img{
+    width: 100%;
+    height: 80vh;
+}
+.slide-bar .btn-prev i{
+    font-size: 2rem;
+    color: #343a40;
+    position:absolute;
+    top: 50%;
+    left:20%;
+}
+.slide-bar .btn-next i{
+    font-size: 2rem;
+    color: #343a40;
+    position:absolute;
+    top: 50%;
+    right:20%;
+}
+
+
+
+
+
+
+.footer .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    gap: 1.5rem;
+    background-image: url(footer-img-1.jpg);
+    padding:2rem 5%;
+}
+
+.footer .box-container .box h3 {
+    padding: .5rem 0;
+    font-size: 2.5rem;
+    color: var(--black);
+}
+
+.footer .box-container .box a {
+    display: block;
+    padding: .5rem 0;
+    font-size: 1.5rem;
+    color: var(--bs-gray-dark);
+}
+.footer .box-container .box i {
+    font-size: 2rem;
+}
+.footer .box-container .box .fa-facebook {
+    font-size: 2rem;
+    width: 3rem;
+    height: 3rem;
+    line-height: 3rem;
+    border-radius: 50%;
+    text-align: center;
+    background-color:#eee;
+    color:  #0d6efd ;
+}
+.footer .box-container .box .fa-instagram {
+    font-size: 2rem;
+    width: 3rem;
+    height: 3rem;
+    line-height: 3rem;
+    border-radius: 50%;
+    text-align: center;
+    background: radial-gradient(circle farthest-corner at 35% 90%, #fec564, transparent 50%), radial-gradient(circle farthest-corner at 0 140%, #fec564, transparent 50%), radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, transparent), linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%);
+    color:#eee ;
+}
+.footer .box-container .box .fa-linkedin {
+    font-size: 2rem;
+    width: 3rem;
+    height: 3rem;
+    line-height: 3rem;
+    border-radius: 50%;
+    text-align: center;
+    background-color:#0d6efd;
+    color: #eee;
+}
+.footer .box-container .box .fa-github {
+    font-size: 2rem;
+    width: 3rem;
+    height: 3rem;
+    line-height: 3rem;
+    border-radius: 50%;
+    text-align: center;
+    background-color:#eee;
+    color:  #343a40 ;
+}
+
+.footer .box-container .box a:hover {
+    color: var(--bs-blue);
+    /* text-decoration: underline; */
+}
+
+.footer .credit {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--black);
+    padding: .5rem;
+    margin-top: 1.5rem;
+}
+
+.footer .credit span {
+    color: var(--green);
+}
+
+.loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 10000;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.loader-container img {
+    width: 35rem;
+}
+
+.loader-container.fade-out {
+    top: -110%;
+    opacity: 0;
+}
+
+
+
+
+
+
+
+
+/* media queries  */
+
+@media (max-width:991px) {
+
+    html {
+        font-size: 55%;
+    }
+
+    header {
+        padding: 1rem 2rem;
+        margin: 0%;
+
+    }
+
+    section {
+        padding: 2rem;
+    }
+
+    header .navbar {
+        text-align: center;
+        margin: 0;
+    }
+    .story .row .content p{
+        font-size: 10px;
+    }
+    .story .row .image img{
+        height: 20rem;
+    }
+
+
+
+}
+
+@media (max-width:768px) {
+
+    header .icons #menu-bars {
+        display: inline-block;
+    }
+
+    header .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border-top: .1rem solid rgba(0, 0, 0, .2);
+        border-bottom: .1rem solid rgba(0, 0, 0, .2);
+        padding: 1rem;
+        text-align: center;
+        margin: 0;
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+
+    header .navbar.active {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
+
+    header .navbar a {
+        display: block;
+        padding: 1.5rem;
+        margin: 1rem;
+        font-size: 2rem;
+        background: #eee;
+    }
+
+    #search-form #search-box {
+        width: 90%;
+        margin: 0 1rem;
+    }
+
+    .home .home-slider .slide .content h3 {
+        font-size: 5rem;
+    }
+
+
+}
+
+@media (max-width:450px) {
+
+    html {
+        font-size: 50%;
+    }
+
+    .dishes .box-container .box img {
+        height: auto;
+        width: 100%;
+    }
+
+    .order form .inputBox .input {
+        width: 100%;
+    }
+    header .icons {
+        display: flex;
+    }
+    header .icons i{ 
+        margin-top: 20px;
+        width: 40px;
+        line-height: 40px;
+        height: 40px;
+        font-size: 15px;
+    }
+    header .icons a{ 
+        margin-top: 20px;
+        width: 40px;
+        line-height: 40px;
+        height: 40px;
+        font-size: 15px;
+    }
+    header .logo img{
+        width: 60px;
+    }
+
+
+}
+form {
+  padding: 5rem 35%;
+  background:#fff;
+  /* opacity: 0.8; */
+}
+
+.form-control{
+  width: 100%;
+  box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .1);
+  padding: 1rem 1rem;
+  position: relative;
+  background:#eee;
+}
+ .form-control input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 5px;
+ 
+}
+.form-control .fa-circle-xmark {
+    float: right;
+}
+.form-control h3{
+  text-align: center;
+  font-size: 2rem;
+}
+.form-control button { 
+  background-color:#0d6efd;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 5px;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+.form-control i{
+  font-size: 1rem;
+}
+.form-control .socail-platform{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 0.5rem 4rem;
+  text-align: center;
+}
+.icon1{
+  flex: 1 1 4rem;
+  height: 2rem;
+  line-height: 2rem;
+  color: #fff;
+  border-radius: 5px;
+  background-color: #0d6efd;
+}
+.icon2{
+  flex: 1 1 4rem;
+  height: 2rem;
+  line-height: 2rem;
+  color: #fff;
+  border-radius: 5px;
+  background: radial-gradient(circle farthest-corner at 35% 90%, #fec564, transparent 50%), radial-gradient(circle farthest-corner at 0 140%, #fec564, transparent 50%), radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, transparent), linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%);
+}
+.form-control .fa-instagram{
+  padding: 0.3rem;
+}
+.form-control .fa-facebook{
+  padding: 0.3rem;
+}
+.form-control p{
+  font-size: 0.9rem;
+  text-align: center;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.form-control a{
+  text-decoration: none;
+}
+@media (max-width:991px) {
+
+  form{
+    padding: 1rem 4rem;
+  }
+}
+
+@media (max-width:768px) {
+
+  form{
+    padding: 1rem 2rem;
+  }
+}
+@media (max-width:450px) {
+
+  html {
+      font-size: 80%;
+      margin: 0;
+  }
+  form{
+    padding: 1rem 1rem;
+  }
+  .socail-platform{
+    height: fit-content;
+  }
+}
+.cart{
+    position: fixed;
+    width: 35rem;
+    top: 0;
+    right: -36rem;
+    min-height: 100vh;
+    background: #eee;
+    padding: 1rem 1rem;
+    box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .1);
+}
+.cart.active{
+    right: 0;
+}
+.cart .fa-circle-xmark{
+    float: right;
+    font-size: 2rem;
+    cursor: pointer;
+}
+.cart .fa-circle-xmark:hover{
+    color: red;
+}
+.cart h3{
+    text-align: center;
+    font-size: 2rem;
+}
+.cart-box{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem 1rem;
+    height: 10rem;
+    box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .1);
+    border-radius: 10px;
+}
+.cart-box .image{
+    flex: 1 1 10rem;
+    border-radius: 30px;
+
+}
+.cart-box .image img{
+    width: 100%;
+}
+.cart-box .cart-text{
+    flex: 1 1 10rem;
+    line-height: 25px;
+}
+.cart-box .cart-text .cart-qty{
+    width: 3rem;
+    background:#fff4f4;
+    border: 1px solid black;
+    border-radius: 2px;
+    text-align: center;
+}
+.cart-box .cart-text .cart-qty:hover{
+    border: 1px solid red;
+}
+.cart-box .cart-text span{
+    color: #000;
+    font-size: 16px;
+}
+.cart-box .cart-remove{
+    flex: 1 1 2rem;
+    font-size: 16px;
+    cursor: pointer;
+    color: red;
+    line-height: 7rem;
+}
+.cart-box .total{
+    border-top:1px solid #000;
+    width: 100%;
+}
+.cart-box .total span{
+    font-size: 18px;
+}
+.cart-box .buy-btn{
+    background-color: #192a56;
+    color: #eee;
+    width: 8rem;
+    height: 3rem;
+    margin: auto;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.cart-box .buy-btn:hover{
+    background-color: #0d6efd;
+}
+    </style>
+
+    <header>
+
+        <a href="#" class="logo"><img src="{% static 'image/food-logo.png' %}" alt=""></a>
+        <nav class="navbar">
+            <a class="active" href="{% url 'burgerapp:homepage' %}">home</a>
+            <a href="{% url 'burgerapp:menupage' %}">menu</a>
+            <a href="{% url 'burgerapp:promotionpage' %}">Promotion</a>
+            <a href="{% url 'burgerapp:aboutuspage' %}">about</a>
+            <a href="{% url 'burgerapp:contactus' %}">Contact Us</a>
+            <a href="{% url 'burgerapp:news' %}">News</a>
+        </nav>
+
+        <div class="icons">
+            <i class="fas fa-bars" id="menu-bars"></i>
+            {% if user.is_authenticated %}
+                {% if user.profile_image %}
+                    <img src="{{ user.profile_image.url }}" alt="Profile Image" class="profile">
+                {% else %}
+                    <span>No profile image available</span>
+                {% endif %}
+            {% else %}
+                <a href="" class="fas fa-user"></a>
+            {% endif %}
+            <i class="fas fa-shopping-cart" id="cart-icon"></i>
+        </div>
+      
+
+
+    </header>
+
+    <!-- search form  -->
+
+    <form action="" id="search-form">
+        <input type="search" placeholder="search here..." name="" id="search-box">
+        <label for="search-box" class="fas fa-search"></label>
+        <i class="fas fa-times" id="close"></i>
+    </form>
+
+
+    <!-- home section starts  -->
+
+    <section class="home" id="home">
+
+        <div class="swiper-container home-slider">
+
+            <div class="swiper-wrapper wrapper">
+
+                <div class="swiper-slide slide">
+                    <div class="content">
+                        <span>Best Food in Country</span>
+                        <h3>
+                            Greate Tasted
+                        </h3>
+                        <p>Food is your body's fuel. Without fuel, your body wants to shut down.</p>
+                        <a href="{% url 'burgerapp:menupage' %}" class="btn">order now</a>
+                    </div>
+                    <div class="image">
+                        <img src="{% static 'image/home-img-3.png' %}" alt="">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="swiper-pagination"></div>
+
+            <!-- feature part -->
+            <div class=" feature">
+                <h3 class="sub-heading">Feature</h3>
+                <h1 class="heading">New feature</h>
+
+                    <div class="item">
+                        <div class="main-item1 ">
+                            <i class="fa-solid fa-pizza-slice"></i>
+                            <h4>Order</h4>
+                        </div>
+                        <div class="main-item2">
+                            <i class="fa-solid fa-truck"></i>
+                            <h4>Delivery</h4>
+                        </div>
+                        <div class="main-item3">
+                            <i class="fa-solid fa-hand-holding-dollar"></i>
+                            <h4>Payment</h4>
+                        </div>
+                        <div class="main-item4">
+                            <i class="fas fa-headset"></i>
+                            <h4>24/7 service</h4>
+                        </div>
+                    </div>
+            </div>
+
+            <!-- Story part -->
+            <div class="story">
+                <h1 class="heading">Our story</h><br><br>
+
+                    <div class="row">
+                        <div class="content">
+                            <h3 class="sub-heading">from 2017</h3>
+                            <p>
+                                Ichiruka was born out of a vision to provide a simple, yet warm and comfortable
+                                dining experience.
+                                It all started with an idea of two childhood friends, baseball teammates and
+                                food lovers, to bring
+                            </p>
+                            <p>
+                                together each of their own strenghts, to create something they can share with
+                                others. With Chef
+                                Krsna – a natural artist, with an immense passion in culinary art, and Kai – a
+                                CPA accountant with
+                                business acumen, Ichiruka Restaurant was born.
+                            </p>
+                            <p>
+                                Ichiruka’ is your place to enjoy good food with the comfort and familiarity of
+                                home! Ichiruka’ was
+                                born out of a vision to provide you a simple yet warm and comfortable dining
+                                experience!
+                            </p>
+                        </div>
+                        <div class="image">
+                            <img src="{% static 'image/stroy1.png' %}" alt="">
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="image">
+                            <img src="{% static 'image/story2.jpg' %}" alt="">
+                        </div>
+                        <div class="content">
+                            <h3 class="sub-heading">In the future</h3>
+                            <p>
+                                Ichiruka was born out of a vision to provide a simple, yet warm and comfortable
+                                dining experience.
+                                It all started with an idea of two childhood friends, baseball teammates and
+                                food lovers, to bring
+                            </p>
+                            <p>
+                                together each of their own strenghts, to create something they can share with
+                                others. With Chef
+                                Krsna – a natural artist, with an immense passion in culinary art, and Kai – a
+                                CPA accountant with
+                                business acumen, Ichiruka Restaurant was born.
+                            </p>
+                            <p>
+                                Ichiruka’ is your place to enjoy good food with the comfort and familiarity of
+                                home! Ichiruka’ was
+                                born out of a vision to provide you a simple yet warm and comfortable dining
+                                experience!
+                            </p>
+                        </div>
+
+                    </div>
+
+            </div>
+
+                    
+    </section>
+
+
+    <!-- home section ends -->
+
+
+
+    <div class="footer">
+
+        <div class="box-container">
+
+            <div class="box">
+                <h3>quick links</h3>
+                <a href="#">home</a>
+                <a href="#">menu</a>
+                <a href="#">promotion</a>
+                <a href="#">about</a>
+                <a href="#">Contact</a>
+            </div>
+
+            <div class="box">
+                <h3>Location</h3>
+                <i class="fa-solid fa-location-dot"></i>
+                <a href="#">3rd Floor, City C4, Olympia
+                    <br> City Phnom Penh, Cambodia, 12312
+                </a>
+            </div>
+
+            <div class="box">
+                <h3>contact info</h3>
+                <a href="#">+855 979 801 569 </a>
+                <a href="#">johnkimleang29@mail.com</a>
+            </div>
+
+            <div class="box">
+                <h3>follow us</h3>
+                <a href="">
+                    <i class="fa-brands fa-facebook"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-linkedin"></i>
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="">Please support us by other platform</a>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+             document.addEventListener('DOMContentLoaded', function() {
+        let cart = document.querySelector('.cart');
+   
+            document.querySelector('#cart-icon').onclick = () =>{
+      cart.classList.add('active');
+    }
+    document.querySelector('#close-icon').onclick = () =>{
+      cart.classList.remove('active');
+    }
+    document.querySelector('.buy-btn').onclick = () =>{
+      alert('Ordered');
+    }
+    
+    
+    let menu = document.querySelector('#menu-bars');
+    let navbar = document.querySelector('.navbar');
+    
+    menu.onclick = () =>{
+      menu.classList.toggle('fa-times');
+      navbar.classList.toggle('active');
+    }
+    
+
+    document.querySelector('#search-icon').onclick = () =>{
+      document.querySelector('#search-form').classList.toggle('active');
+    }
+    
+    document.querySelector('#close').onclick = () =>{
+      document.querySelector('#search-form').classList.remove('active');
+    }
+    
+});
+ 
+    </script>
+
+</body>
+
+</html>

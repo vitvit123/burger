@@ -1,0 +1,292 @@
+{% load static %}
+<!-- SweetAlert CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.css">
+
+<!-- SweetAlert JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.js"></script>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    body {
+        font-family: var(--primary-font);
+    }
+
+    :root {
+        --primary-font: "Quicksand", sans-serif;
+        --secondary-font: "Poppins", sans-serif;
+        --first-color: #fffdd0;
+        --second-color: #a0522d;
+    }
+
+    h1.create-acc {
+        font-family: var(--primary-font);
+        font-size: 23px;
+        text-align: center;
+    }
+
+    form {
+        border-radius: 5px;
+        width: 30%;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+        padding: 30px;
+    }
+
+    .personal-info {
+        padding: 10px 0;
+        margin-bottom: 20px;
+    }
+
+    .personal-info h3 {
+        margin: 30px 0;
+    }
+
+    .custom-select {
+        font-family: var(--secondary-font);
+        display: block;
+        width: 95%;
+        padding: 15px 10px;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 2px solid var(--second-color);
+        border-radius: 20px;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    /* Custom styling for the date of birth input */
+    [type="date"].form-control {
+        display: block;
+        padding: 15px 10px;
+        width: 95%;
+        border: 2px solid var(--second-color);
+        border-radius: 20px;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    .personal-info input {
+        margin: 20px 0;
+        border-radius: 20px;
+        outline: 0;
+        font-size: 17px;
+        padding: 15px 10px;
+        font-family: var(--secondary-font);
+        border: 2px solid var(--second-color);
+    }
+
+    .container {
+        margin-top: 20vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .personal-info input[type="text"] {
+        display: block;
+        width: 95%;
+    }
+
+    .personal-info input[type="password"] {
+        display: block;
+        width: 95%;
+    }
+
+    .personal-info input[type="email"] {
+        display: block;
+        width: 95%;
+    }
+
+    .term-of-use .ctn {
+        padding: 10px 0;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    button.btn-primary {
+        margin: 15px 10px;
+        float: right;
+        background-color: #fffdd0;
+        border-radius: 50px;
+        padding: 10px;
+        font-family: var(--primary-font);
+        transition: 0.5s ease;
+        border: 1px solid black;
+    }
+
+    button.btn-primary:hover {
+        background-color: black;
+        color: white;
+    }
+
+    .ctn {
+
+        width: fit-content;
+        margin-right: 10px;
+    }
+
+    .ctn input {
+        zoom: 1.5;
+    }
+
+
+
+
+    @media (max-width: 767px) {
+        form {
+            padding: 15px;
+            width: 80%;
+        }
+
+        .personal-info,
+        .term-of-use {
+            margin-bottom: 15px;
+        }
+
+        .personal-info,
+        .term-of-use .ctn {
+            width: 100%;
+        }
+
+        .ctn {
+            margin-right: 0;
+        }
+    }
+
+    .go-back-btn {
+        display: flex;
+        margin: 10px 0 0 50px;
+        border: 1px solid black;
+        width:75px;
+        padding:7px;
+        border-radius: 20px;
+        background-color: #a0522d;
+        color:white;
+        text-decoration: none;
+        transition: 0.5s ease;
+    }
+    .go-back-btn:hover{
+        background-color: #495057;
+    }
+    label.pfp{
+        font-size: 20px;
+        font-family: var(--primary-font);
+        font-weight: bold;
+        margin-right: 55px;
+    }
+</style>
+<a href="{% url 'burgerapp:menupage' %}" class="go-back-btn">Go Back</a>
+
+<h1 class="create-acc">Create an account</h1>
+<div class="container">
+    <form method="post" action="{% url 'burgerapp:signup' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6">
+                <div class="personal-info">
+                    <h6>* indicates required field</h6>
+                    <h3>Personal Information</h3>
+                    <input type="text" class="form-control" placeholder="* First name" name="first_name">
+                    <input type="text" class="form-control" placeholder="* Last name" name="last_name">
+                    <input type="text" class="form-control" placeholder="* Username" name="username">
+                  
+                    <div class="alert alert-danger"></div>
+            
+                    <select class="form-control custom-select" name="sex">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                    <input type="date" class="form-control" placeholder="* Date of Birth" name="dob">
+                    <label for="profile_image" class="pfp">Profile Picture</label>
+                    <input type="file" class="form-control-file pfp" name="profile_image">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="personal-info">
+                    <h3>Account Security</h3>
+                    <input type="email" class="form-control" placeholder="* Email address" name="email">
+               
+                    <div class="alert alert-danger"></div>
+            
+                    <input type="password" class="form-control" placeholder="* Password" name="password">
+                    <h6 class="pass-warn">Create a password 8 to 25 characters long that includes at least 1 uppercase
+                        and 1 lowercase letter, 1 number and 1 special character like an exclamation point or asterisk.
+                    </h6>
+                </div>
+            </div>
+        </div>
+        <div class="term-of-use">
+            <h3>TERMS OF USE</h3>
+            <div class="ctn">
+                <div class="form-check">
+                    <input class="form-check-input bigger-checkbox" type="checkbox" id="myCheckbox">
+                </div>
+            </div>
+            <div class="ctn ctn-text">
+                <p>I agree to the Starbucks® Rewards Terms opens in new window and the Starbucks Card Terms opens in new
+                    window and have read the Starbucks Privacy Statement opens in new window.</p>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit" id="submitButton" disabled>Create an account</button>
+    </form>
+    
+</div>
+
+<script>
+    const form = document.querySelector('form');
+    const submitButton = document.getElementById('submitButton');
+
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const formData = new FormData(form);
+        fetch(form.action, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                // Redirect to a success page or perform other actions
+                Swal.fire(
+                    'Success',
+                    'Signup successful',
+                    'success'
+                );
+            } else {
+                // Handle the error case
+                console.error('Signup failed');
+                Swal.fire(
+                    'Error',
+                    'Signup fail',
+                    'error'
+                ).then(function(){
+                    window.location.href = "{% url 'burgerapp:homepage' %}";
+                })
+              
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            Swal.fire(
+                'Error',
+                'An error occurred',
+                'error'
+            );
+        });
+    });
+
+    // Enable or disable the submit button based on checkbox state
+    const checkbox = document.getElementById('myCheckbox');
+    checkbox.addEventListener('change', function () {
+        submitButton.disabled = !checkbox.checked;
+    });
+</script>
